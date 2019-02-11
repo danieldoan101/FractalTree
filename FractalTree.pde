@@ -3,6 +3,7 @@ private int smallestBranch = 10;
 private double branchAngle = .2;  
 private double angle = 3*Math.PI/2;
 private int startLength = 100;
+private double bend = 0;
 
 public void setup(){   
 	size(640,720);    
@@ -18,8 +19,8 @@ public void draw()
 } 
 
 public void drawBranches(int x,int y, double branchLength, double angle){   
-	double angle1 = angle + branchAngle;
-	double angle2 = angle - branchAngle;
+	double angle1 = angle + branchAngle + bend;
+	double angle2 = angle - branchAngle + bend;
 	int endX1 = (int)(branchLength*Math.cos(angle1) + x);
 	int endY1 = (int)(branchLength*Math.sin(angle1) + y);
 	int endX2 = (int)(branchLength*Math.cos(angle2) + x);
@@ -40,11 +41,17 @@ public void keyPressed(){
 	}else if(key=='s'){
 		startLength--;
 		redraw();
-	}else if(key=='d'){
+	}else if(key=='e'){
 		branchAngle += 0.0174533;
 		redraw();
-	}else if(key=='a'){
+	}else if(key=='q'){
 		branchAngle -= 0.0174533;
+		redraw();
+	}else if(key=='d'){
+		bend += 0.0174533;
+		redraw();
+	}else if(key=='a'){
+		bend -= 0.0174533;
 		redraw();
 	}
 	redraw();
